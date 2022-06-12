@@ -1,0 +1,56 @@
+.kotakkandidat{
+    position: relative;
+    margin-left: 0px;
+    margin-right: auto;
+    /* margin-top: 200px; */
+    width: 100%;
+    max-width: 500px;
+    max-height: 1000px;
+    background-color: white;
+    display: grid;
+    box-shadow: 5px 5px 25px rgb(104, 103, 103);
+}
+
+.kotakkandidat img{
+    width: 150px;
+    height: 150px;
+    /* margin-top: 20px; */
+    margin-bottom: 20px;
+    border-radius: 50%;
+    position: relative;
+    margin-left: 180px ;
+}
+
+.kotakkandidat h2{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 30px;
+    font-style: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.kotakkandidat h3{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-style: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.kotakkandidat p {
+    text-align: center ;
+    font-size: 15px ;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 1cm;
+    margin-right: 1cm;
+}
+
+.kotakkandidat ul{
+    list-style-type: none;
+    text-decoration: none;
+    text-align: center;
+    margin-left: 1cm;
+    margin-right: 1cm;
+    font-size: 15PX;
+    font-family: Arial, Helvetica, sans-serif;
+}
