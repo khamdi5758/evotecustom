@@ -1,5 +1,5 @@
 <?php
-
+include_once 'myrc4.php';
 class Auth extends Controller
 {
     public function __construct()
@@ -31,6 +31,13 @@ class Auth extends Controller
 
     function prosloginpemilih()
     {
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+        $kripto = new myrc4();
+        $kripto->setlkstream(8);
+        $hasenrc4 = $kripto->enkripsi($password,$username);
+        $_POST["password"] = $hasenrc4;
+        // var_dump($_POST);
         $data = $this->model('Auth_model')->loginpemilih($_POST['username'], $_POST['password']);
         if (count($data) > 0) {
             //var_dump($data);
@@ -40,11 +47,11 @@ class Auth extends Controller
                 $_SESSION["nampeg_session"] = $user['nama'];
                 $_SESSION["user_session"] = $user['nim'];
             }
-            Flasher::setFlash('berhasil', 'login', 'success', 'anda');
+            // Flasher::setFlash('berhasil', 'login', 'success', 'anda');
             header('location: ' . baseurl . '/halpemilih');
             exit;
         } else {
-            Flasher::setFlash('gagal', 'login', 'danger', 'anda');
+            // Flasher::setFlash('gagal', 'login', 'danger', 'anda');
             header('location: ' . baseurl . '/auth/loginpemilih');
             exit;
         }
@@ -61,11 +68,11 @@ class Auth extends Controller
                 $_SESSION["nampeg_session"] = $user['nama_kandidat'];
                 $_SESSION["user_session"] = $user['id_kandidat'];
             }
-            Flasher::setFlash('berhasil', 'login', 'success', 'anda');
+            // Flasher::setFlash('berhasil', 'login', 'success', 'anda');
             header('location: ' . baseurl . '/halkandidat');
             exit;
         } else {
-            Flasher::setFlash('gagal', 'login', 'danger', 'anda');
+            // Flasher::setFlash('gagal', 'login', 'danger', 'anda');
             header('location: ' . baseurl . '/auth/loginkandidat');
             exit;
         }
@@ -86,18 +93,18 @@ class Auth extends Controller
 
             if ($_SESSION["akses"] == 1) {
                 //echo "admin";
-                Flasher::setFlash('berhasil', 'login', 'success', 'anda');
+                // Flasher::setFlash('berhasil', 'login', 'success', 'anda');
                 header('location: ' . baseurl . '/haladmin');
                 exit;
             } elseif ($_SESSION["akses"] == 2) {
                 //echo "pengawas";
-                Flasher::setFlash('berhasil', 'login', 'success', 'anda');
+                // Flasher::setFlash('berhasil', 'login', 'success', 'anda');
                 header('location: ' . baseurl . '/halpanitia');
                 exit;
             }
             //echo $_SESSION["akses"];
         } else {
-            Flasher::setFlash('gagal', 'login', 'danger', 'anda');
+            // Flasher::setFlash('gagal', 'login', 'danger', 'anda');
             header('location: ' . baseurl . '/auth/loginpanitia');
             exit;
         }
@@ -106,7 +113,7 @@ class Auth extends Controller
     function getuser()
     {
         $this->model('Auth_model')->getuser();
-        var_dump($this->data['id_panitia']);
+        // var_dump($this->data['id_panitia']);
     }
 
     /* logging out the user */

@@ -15,8 +15,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12">
-                        <?php Flasher::flash();
-                        ?>
+                        <?php Flasher::flash();?>
                     </div>
                     <div class="col-md-12">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputdata" style="margin-bottom: 10px;">
@@ -55,7 +54,19 @@
                                             <td><?= $mhs['fakultas']; ?></td>
                                             <td><?= $mhs['alamat']; ?></td>
                                             <td><?= $mhs['username']; ?></td>
-                                            <td><?= $mhs['password']; ?></td>
+                                            <td>
+                                                <?php 
+                                                    
+                                                    $unmmhs = $mhs['username'];
+                                                    $pwmhs = $mhs['password']; 
+                                                    // $dpwmhs = RC4::decrypt($unmmhs,$pwmhs);
+                                                    echo $pwmhs;
+                                                    // $cobrc4des = new Kriptorc4();
+                                                    // echo $cobrc4des->deskripsi($pwmhs,$unmmhs);
+                                                
+                                                ?>
+                                            
+                                            </td>
                                             <td>
                                                 <a href="<?= baseurl; ?>/mahasiswa/edit/<?= $mhs['nim']; ?>" class="btn btn-warning" style="margin-bottom: 20px;">ubah</a>
                                                 <a href="<?= baseurl; ?>/mahasiswa/delete/<?= $mhs['nim']; ?>" class="btn btn-danger" style="margin-bottom: 20px;" onclick="return confirm('yakin')">hapus</a>
@@ -125,7 +136,7 @@
                     </div>
                     <div class="form-group">
                         <label for="password">PASSWORD</label>
-                        <input type="text" class="form-control" id="password" name="password" placeholder="Enter password">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" maxlength="8">
                         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                     </div>
             </div>

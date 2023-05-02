@@ -1,5 +1,5 @@
 <?php
-
+include_once 'myrc4.php';
 class haladmin extends Controller
 {
     public function index()
@@ -14,6 +14,21 @@ class haladmin extends Controller
     {
         $data['judul'] = 'mahasiswa';
         $data['mhs'] = $this->model('Mahasiswa_model')->getmhs();
+        foreach ($data['mhs'] as $mhs) {
+            $unmmhs = $mhs['username'];
+            $pwmhs =  $mhs['password'];
+            $lkstrm = $mhs['lenkystream'];
+            $dekrip = new myrc4();
+            $dekrip->setlkstream($lkstrm);
+            $dekrip->getlkstream();
+            $dpwmhs = $dekrip->deskripsi($pwmhs,$unmmhs);
+            // echo $dpwmhs;
+            $temp = $mhs['password'];
+            $mhs['password'] = $dpwmhs;
+            $dpwmhs = $temp;
+            // $mhs['password'] = $dpwmhs;
+        }
+        // var_dump($data['mhs']);
         $this->view('templates/header', $data);
         $this->view('mahasiswa/indexku', $data);
         $this->view('templates/footer');

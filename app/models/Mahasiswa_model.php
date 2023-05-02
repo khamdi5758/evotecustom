@@ -33,8 +33,8 @@ class Mahasiswa_model
 
     public function tambahdatamhs($data)
     {
-        $query = "INSERT INTO " . $this->table . " (nim, nama, prodi, fakultas, alamat, username, password)
-        VALUES (:nim,:nama,:prodi,:fakultas,:alamat,:username,:password)";
+        $query = "INSERT INTO " . $this->table . " (nim, nama, prodi, fakultas, alamat, username, password,lenkystream)
+        VALUES (:nim,:nama,:prodi,:fakultas,:alamat,:username,:password,:lenkystream)";
         $this->db->query($query);
         $this->db->bind('nim', $data['nim']);
         $this->db->bind('nama', $data['nama']);
@@ -43,6 +43,7 @@ class Mahasiswa_model
         $this->db->bind('alamat', $data['alamat']);
         $this->db->bind('username', $data['username']);
         $this->db->bind('password', $data['password']);
+        $this->db->bind('lenkystream', $data['lenkystream']);
         $this->db->execute();
         return $this->db->rowCount();
     }

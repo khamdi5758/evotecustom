@@ -1,21 +1,28 @@
 <?php
-
+include_once 'myrc4.php';
 class Mahasiswa extends Controller
 {
-    // public function index()
-    // {
+    public function index()
+    {
 
-    //     echo "nama saya $nama , angkatan $angkatan";
-    //     $data['judul'] = 'mahasiswa';
-    //     $data['mhs'] = $this->model('Mahasiswa_model')->getmhs();
-    //     $this->view('templates/header', $data);
-    //     $this->view('mahasiswa/indexku', $data);
-    //     $this->view('templates/footer');
-    // }
+        // echo "nama saya $nama , angkatan $angkatan";
+        $data['judul'] = 'mahasiswa';
+        $data['mhs'] = $this->model('Mahasiswa_model')->getmhs();
+        $this->view('templates/header', $data);
+        $this->view('mahasiswa/indexku', $data);
+        $this->view('templates/footer');
+    }
 
     public function tambah()
-    {
-        //var_dump($_POST);
+    {  
+        $enkrip = new myrc4();
+        $enkrip->setlkstream(8);
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+
+        $_POST["password"] = $enkrip->enkripsi($password,$username);
+        // $_POST["lenkystream"] = $enkrip->getlkstream();
+        // var_dump($_POST);
         if ($this->model('Mahasiswa_model')->tambahdatamhs($_POST) > 0) {
             Flasher::setFlash('berhasil', 'ditambahkan', 'success', 'mahasiswa');
             header('location: ' . baseurl . '/mahasiswa');

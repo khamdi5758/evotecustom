@@ -13,4 +13,5 @@ class Dashboard extends Controller
     //     $this->view('dashboard/index', $data);
     //     $this->view('templates/footer');
     // }
+    
 }

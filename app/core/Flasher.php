@@ -2,7 +2,7 @@
 
 class Flasher
 {
-    public function setFlash($pesan, $aksi, $tipe, $pages)
+    public static function setFlash($pesan, $aksi, $tipe, $pages)
     {
         $_SESSION['flash'] = [
             'pesan' => $pesan,
@@ -12,7 +12,7 @@ class Flasher
         ];
     }
 
-    public function flash()
+    public static function flash()
     {
         if (isset($_SESSION['flash'])) {
             echo '<div class="alert alert-' . $_SESSION['flash']['tipe'] . ' alert-dismissible fade show" role="alert">
